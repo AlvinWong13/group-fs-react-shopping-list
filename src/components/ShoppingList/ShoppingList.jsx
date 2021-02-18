@@ -1,6 +1,6 @@
 import ShoppingItem from '../ShoppingItem/ShoppingItem'
 
-function ShoppingList({shoppingList, handleRemove}) {
+function ShoppingList({shoppingList, handleRemove, buyItem}) {
   console.log('shoppingList', shoppingList);
   return (
   <>  
@@ -13,6 +13,7 @@ function ShoppingList({shoppingList, handleRemove}) {
           key={item.id}
           item={item}
           handleRemove={handleRemove}
+          buyItem={buyItem}
           />
   ))}    
     </div>

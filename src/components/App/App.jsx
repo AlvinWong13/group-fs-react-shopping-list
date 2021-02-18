@@ -70,7 +70,7 @@ const addFoodItem = () => {
 
   const handleRemove = (event) => {
     const itemId = event.target.dataset.id
-    console.log('In handleRemove',)
+    console.log('In handleRemove');
     axios.delete(`/list/${itemId}`)
     .then(response => {
       console.log('Item removed', response);
@@ -78,6 +78,27 @@ const addFoodItem = () => {
     })
     .catch(err => {
       console.log('Unable to remove item',err);
+    })
+  }
+
+  // axios.put(`/list/${itemId}, itemPurchased)
+  const buyItem = (event) => {
+    const itemId = event.target.dataset.id;
+    const itemPurchased = event.target.dataset.purchased;
+    console.log('item purchased', itemPurchased);
+    console.log('testing', event.target.dataset.purchased)
+    console.log('In buyItem');
+    axios({ 
+      url: `/list/${itemId}`,
+      method: 'PUT',
+      data: {itemPurchased}
+    }) 
+    .then(response => {
+      console.log('Item purchased', response);
+      getShoppingList();
+    })
+    .catch(err => {
+      console.log('Unable to purchase item', err)
     })
   }
 
@@ -96,7 +117,8 @@ const addFoodItem = () => {
         <ul>
         <ShoppingList 
           shoppingList={shoppingList}
-          handleRemove={handleRemove}/>
+          handleRemove={handleRemove}
+          buyItem={buyItem}/>
         </ul> 
       </main>
     </div>
