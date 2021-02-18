@@ -14,7 +14,7 @@ router.post('/', function (req, res) {
   pool
     .query(queryText, [foodItem.name, foodItem.quantity, foodItem.unit])
     .then((results) => {
-      console.log('results of dbResults', dbResults);
+      console.log('results', results);
       res.sendStatus(200);
     })
     .catch((error) => {
