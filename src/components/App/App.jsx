@@ -3,6 +3,7 @@ import Header from '../Header/Header.jsx';
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import ShoppingList from '../ShoppingList/ShoppingList';
 
 
 function App() {
@@ -49,19 +50,12 @@ const addFoodItem = () => {
     <div className="App">
       <Header />
       <main>
-        <p>Under Construction...</p>
+        <ul>
+        <ShoppingList />
+        </ul>
       </main>
     </div>
   );
-
-    return (
-        <div className="App">
-            <Header />
-            <main>
-                <p>Under Construction...</p>
-            </main>
-        </div>
-    );
 
 }
 
