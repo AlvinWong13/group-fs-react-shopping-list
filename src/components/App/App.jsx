@@ -1,31 +1,39 @@
-import React from 'react';
+// import React from 'react';
 import Header from '../Header/Header.jsx';
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddFoodItemForm from '../AddFoodItemForm/AddFoodItemForm'
+import ShoppingList from '../ShoppingList/ShoppingList';
+
 
 
 function App() {
 
 // setShoppingList
+
 let [shoppingList, setShoppingList] = useState([]);
-let [newFoodItemName,setNewFoodItemName ] = useState("")
+let [newFoodItemName, setNewFoodItemName ] = useState("")
 let [newFoodItemQuantity, setNewFoodItemQuantity] = useState("")
 let [newFoodItemUnit, setNewFoodItemUnit] = useState("")
+let [shoppingList, setShoppingList] = useState([]);
+
 
 // on load get list
 useEffect(() => {
     getShoppingList()
-}, [])
+}, []);
 
 // function to grab shoppingList
 const getShoppingList = () => {
     axios.get('/list')
         .then(response => {
-            console.log('shopping list data', response.data);
             // getting data from server
             setShoppingList(response.data);
+            console.log('shopping list data', shoppingList);
+            console.log('shopping list response data', response.data)
+            
+
         })
         .catch(err => {
             alert('Unable to get shopping list');
@@ -70,7 +78,10 @@ const addFoodItem = () => {
         newFoodItemUnit={newFoodItemUnit}
         setNewFoodItemUnit={setNewFoodItemUnit}/>
       <main>
-        <p>Under Construction...</p>
+        <ul>
+        <ShoppingList 
+          shoppingList={shoppingList}/>
+        </ul> 
       </main>
     </div>
   );

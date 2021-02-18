@@ -6,10 +6,11 @@ const pool = require('../modules/pool.js');
 
 // GET route for shopping items
 router.get('/', (req, res) => {
-  const sqlText = `SELECT * FROM shopping_list ORDER BY name ASC`;
+  const sqlText = `SELECT * FROM shopping_list ORDER BY name ASC;`;
   pool.query(sqlText)
   .then(results => {
-    res.send(results.row);
+    console.log('rows', results.rows);
+    res.send(results.rows);
   })
   .catch(err => {
     console.log('Error contacting database', err);
