@@ -16,7 +16,6 @@ let [shoppingList, setShoppingList] = useState([]);
 let [newFoodItemName, setNewFoodItemName ] = useState("")
 let [newFoodItemQuantity, setNewFoodItemQuantity] = useState("")
 let [newFoodItemUnit, setNewFoodItemUnit] = useState("")
-let [shoppingList, setShoppingList] = useState([]);
 
 
 // on load get list
@@ -44,6 +43,8 @@ const getShoppingList = () => {
 
 const handleSubmit = (event) => {
   event.preventDefault();
+  
+
   console.log('clicked submit', event)
   addFoodItem();
 }
@@ -52,6 +53,7 @@ const addFoodItem = () => {
   console.log('name', newFoodItemName);
   console.log('quantity', newFoodItemQuantity);
   console.log('unit', newFoodItemUnit);
+
     axios
       .post('/list', {
         name: newFoodItemName,
@@ -65,6 +67,19 @@ const addFoodItem = () => {
         console.log('error posting', error);
       });
   };
+
+  const handleRemove = (event) => {
+    const itemId = event.target.dataset.id
+    console.log('In handleRemove',)
+    axios.delete(`/list/${itemId}`)
+    .then(response => {
+      console.log('Item removed', response);
+      getShoppingList();
+    })
+    .catch(err => {
+      console.log('Unable to remove item',err);
+    })
+  }
 
   return (
     <div className="App">
@@ -80,7 +95,8 @@ const addFoodItem = () => {
       <main>
         <ul>
         <ShoppingList 
-          shoppingList={shoppingList}/>
+          shoppingList={shoppingList}
+          handleRemove={handleRemove}/>
         </ul> 
       </main>
     </div>

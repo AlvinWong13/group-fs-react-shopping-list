@@ -40,4 +40,21 @@ router.post('/', function (req, res) {
     });
 }); // end POST route
 
+router.delete('/:id', function (req, res) {
+  console.log('in delete item endpoint');
+  
+  let itemId = req.params.id;
+
+  let sqlText = `DELETE FROM shopping_list WHERE "id"=$1`;
+
+  pool.query(sqlText, [itemId])
+  .then((resDB) => {
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('error deleting item', error);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;
