@@ -3,12 +3,16 @@ import Header from '../Header/Header.jsx';
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import AddFoodItemForm from '../AddFoodItemForm/AddFoodItemForm'
 
 
 function App() {
 
 // setShoppingList
 let [shoppingList, setShoppingList] = useState([]);
+let [newFoodItemName,setNewFoodItemName ] = useState("")
+let [newFoodItemQuantity, setNewFoodItemQuantity] = useState("")
+let [newFoodItemUnit, setNewFoodItemUnit] = useState("")
 
 // on load get list
 useEffect(() => {
@@ -30,12 +34,21 @@ const getShoppingList = () => {
         })
 } // end getShoppingList
 
+const handleSubmit = (event) => {
+  event.preventDefault();
+  console.log('clicked submit', event)
+  addFoodItem();
+}
+
 const addFoodItem = () => {
+  console.log('name', newFoodItemName);
+  console.log('quantity', newFoodItemQuantity);
+  console.log('unit', newFoodItemUnit);
     axios
       .post('/list', {
-        name: foodItemName,
-        quantity: foodItemQuantity,
-        unit: foodItemUnit,
+        name: newFoodItemName,
+        quantity: newFoodItemQuantity,
+        unit: newFoodItemUnit
       })
       .then((response) => {
         getShoppingList();
@@ -48,20 +61,19 @@ const addFoodItem = () => {
   return (
     <div className="App">
       <Header />
+      <AddFoodItemForm 
+        handleSubmit={handleSubmit} 
+        setNewFoodItemName={setNewFoodItemName} 
+        newFoodItemName={newFoodItemName} 
+        setNewFoodItemQuantity ={setNewFoodItemQuantity}
+        newFoodItemQuantity={newFoodItemQuantity}
+        newFoodItemUnit={newFoodItemUnit}
+        setNewFoodItemUnit={setNewFoodItemUnit}/>
       <main>
         <p>Under Construction...</p>
       </main>
     </div>
   );
-
-    return (
-        <div className="App">
-            <Header />
-            <main>
-                <p>Under Construction...</p>
-            </main>
-        </div>
-    );
 
 }
 

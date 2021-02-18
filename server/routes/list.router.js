@@ -18,6 +18,7 @@ router.get('/', (req, res) => {
 }); // end GET route
 
 
+// POST route
 router.post('/', function (req, res) {
   console.log('inside SERVER-Side-Post');
   console.log('req.body', req.body);
@@ -36,6 +37,6 @@ router.post('/', function (req, res) {
       console.log('error in POST', error);
       res.sendStatus(500);
     });
-});
+}); // end POST route
 
 module.exports = router;
