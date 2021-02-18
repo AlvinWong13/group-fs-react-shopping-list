@@ -12,8 +12,8 @@ router.post('/', function (req, res) {
     'INSERT INTO "shopping_list" ("name", "quantity", "unit") VALUES ($1, $2, $3)';
 
   pool
-    .query(queryText, [req.body.name, req.body.quantity, req.body.unit])
-    .then(function (dbResults) {
+    .query(queryText, [foodItem.name, foodItem.quantity, foodItem.unit])
+    .then((results) => {
       console.log('results of dbResults', dbResults);
       res.sendStatus(200);
     })
