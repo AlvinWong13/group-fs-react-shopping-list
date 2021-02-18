@@ -42,7 +42,7 @@ router.post('/', function (req, res) {
 
 router.delete('/:id', function (req, res) {
   console.log('in delete item endpoint');
-  
+
   let itemId = req.params.id;
 
   let sqlText = `DELETE FROM shopping_list WHERE "id"=$1`;
@@ -53,6 +53,33 @@ router.delete('/:id', function (req, res) {
   })
   .catch((error) => {
     console.log('error deleting item', error);
+    res.sendStatus(500);
+  })
+})
+
+router.put('/:id', (req, res) => {
+  console.log('in PUT endpoint');
+  console.log('req.body', req.body);
+  console.log('req.param', req.param);
+  let purchase = req.body.itemPurchased;
+  console.log('item purchase', purchase);
+  let itemId = req.params.id;
+  let sqlText = '';
+
+  if (purchase === 'false') {
+    sqlText = `UPDATE shopping_list SET "purchased"=TRUE WHERE id=$1`;
+  } else{
+    console.log('not able to purchase');
+    res.sendStatus(500);
+    return;
+  }
+  
+  pool.query(sqlText, [itemId])
+  .then((resDB) => {
+    console.log('resDB in PUT is', resDB);
+    res.sendStatus(200);
+  }) 
+  .catch((error) => {
     res.sendStatus(500);
   })
 })
