@@ -65,8 +65,8 @@ function App() {
   };
 
   // Function to clear the shopping list
-  const clearList = (event) => {
-    console.log('clear button clicked', event.target);
+  const clearList = () => {
+    console.log('clear button clicked');
     axios
       .delete('/list')
       .then((response) => {
@@ -75,6 +75,20 @@ function App() {
       .catch((error) => {
         console.log('error clearing list', error);
       });
+  };
+
+  // Function to reset the shopping list purchases
+  const resetList = (event) => {
+    console.log('reset all items');
+
+    axios.put('/list')
+    .then((response) => {
+      getShoppingList();
+    })
+    .catch((error) => {
+      console.log('error clearing list IN PUT APP', error);
+    });
+
   };
 
   return (
@@ -91,7 +105,11 @@ function App() {
       />
       <main>
         <ul>
-          <ShoppingList shoppingList={shoppingList} clearList={clearList} />
+          <ShoppingList
+            shoppingList={shoppingList}
+            clearList={clearList}
+            resetList={resetList}
+          />
         </ul>
       </main>
     </div>

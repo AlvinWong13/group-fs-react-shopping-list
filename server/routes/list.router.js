@@ -40,7 +40,7 @@ router.post('/', function (req, res) {
     });
 }); // end POST route
 
-// DELETE route
+// DELETE route for clear button
 router.delete('/', (req, res) => {
   console.log('inside router.delete');
   let queryText = ' DELETE FROM "shopping_list" ';
@@ -53,6 +53,24 @@ router.delete('/', (req, res) => {
     })
     .catch((error) => {
       console.log('error on clear', error);
+      res.sendStatus(500);
+    });
+}); // end delete route
+
+// PUT route for reset button
+router.put('/', (req, res) => {
+  console.log('inside the router.PUT');
+
+  let queryText = ' UPDATE "shopping_list" SET "purchased"=false ';
+
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log('reset the list');
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('error on reset', error);
       res.sendStatus(500);
     });
 });

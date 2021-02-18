@@ -1,10 +1,10 @@
-function ShoppingList({ shoppingList, clearList }) {
+function ShoppingList({ shoppingList, clearList, resetList }) {
   console.log('shoppingList', shoppingList);
   return (
     <>
       <h3>Shopping List</h3>
       <div>
-        <button>Reset</button>
+        <button onClick={resetList}>Reset</button>
         <button onClick={clearList}>Clear</button>
 
         {shoppingList.map((item) => {
