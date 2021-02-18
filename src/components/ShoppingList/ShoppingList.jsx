@@ -1,3 +1,5 @@
+import ShoppingItem from '../ShoppingItem/ShoppingItem'
+
 function ShoppingList({shoppingList, handleRemove}) {
   console.log('shoppingList', shoppingList);
   return (
@@ -6,12 +8,13 @@ function ShoppingList({shoppingList, handleRemove}) {
     <div>
       <button>Reset</button><button>Clear</button>
       
-      {shoppingList.map(item => {
-        return <li key={item.id}>{item.name} {item.quantity} {item.unit}
-        <button>Buy</button><button data-id={item.id} onClick={handleRemove}>Remove</button>
-      </li>
-      })}
-        
+        {shoppingList.map(item => (
+          <ShoppingItem
+          key={item.id}
+          item={item}
+          handleRemove={handleRemove}
+          />
+  ))}    
     </div>
   </>  
   );
