@@ -16,17 +16,20 @@ useEffect(() => {
     getShoppingList()
 }, [])
 
+// function to grab shoppingList
 const getShoppingList = () => {
     axios.get('/list')
         .then(response => {
             console.log('shopping list data', response.data);
+            // getting data from server
             setShoppingList(response.data);
         })
         .catch(err => {
             alert('Unable to get shopping list');
+            // return the error if it fails
             console.log('error getting shopping list', err)
         })
-}
+} // end getShoppingList
 
     return (
         <div className="App">
