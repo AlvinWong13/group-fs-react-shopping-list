@@ -7,17 +7,17 @@ const pool = require('../modules/pool.js');
 // GET route for shopping items
 router.get('/', (req, res) => {
   const sqlText = `SELECT * FROM shopping_list ORDER BY name ASC;`;
-  pool.query(sqlText)
-  .then(results => {
-    console.log('rows', results.rows);
-    res.send(results.rows);
-  })
-  .catch(err => {
-    console.log('Error contacting database', err);
-    res.sendStatus(500);
-  });
+  pool
+    .query(sqlText)
+    .then((results) => {
+      console.log('rows', results.rows);
+      res.send(results.rows);
+    })
+    .catch((err) => {
+      console.log('Error contacting database', err);
+      res.sendStatus(500);
+    });
 }); // end GET route
-
 
 // POST route
 router.post('/', function (req, res) {
@@ -39,6 +39,42 @@ router.post('/', function (req, res) {
       res.sendStatus(500);
     });
 }); // end POST route
+
+
+// DELETE route for clear button
+router.delete('/', (req, res) => {
+  console.log('inside router.delete');
+  let queryText = ' DELETE FROM "shopping_list" ';
+
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log('cleared the list');
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('error on clear', error);
+      res.sendStatus(500);
+    });
+}); // end delete route
+
+// PUT route for reset button
+router.put('/', (req, res) => {
+  console.log('inside the router.PUT');
+
+  let queryText = ' UPDATE "shopping_list" SET "purchased"=false ';
+
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log('reset the list');
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('error on reset', error);
+      res.sendStatus(500);
+    });
+});
 
 router.delete('/:id', function (req, res) {
   console.log('in delete item endpoint');
@@ -83,5 +119,6 @@ router.put('/:id', (req, res) => {
     res.sendStatus(500);
   })
 })
+
 
 module.exports = router;

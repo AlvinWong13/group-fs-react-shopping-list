@@ -7,7 +7,7 @@ CREATE TABLE shopping_list (
 	quantity FLOAT,
   unit VARCHAR(20),
 	purchased BOOLEAN DEFAULT 'false'
-); 
+);
 
 /*Test Data*/
 INSERT INTO shopping_list (name, quantity, unit)
