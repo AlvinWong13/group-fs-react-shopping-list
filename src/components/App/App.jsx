@@ -18,6 +18,7 @@ function App() {
     getShoppingList();
   }, []);
 
+
   // function to grab shoppingList
   const getShoppingList = () => {
     axios
@@ -35,6 +36,7 @@ function App() {
       });
   }; // end getShoppingList
 
+
   // Function to handle submit click
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,6 +49,7 @@ function App() {
     console.log('name', newFoodItemName);
     console.log('quantity', newFoodItemQuantity);
     console.log('unit', newFoodItemUnit);
+
     axios
       .post('/list', {
         name: newFoodItemName,
@@ -63,6 +66,7 @@ function App() {
         console.log('error posting', error);
       });
   };
+
 
   // Function to clear the shopping list
   const clearList = () => {
@@ -90,6 +94,40 @@ function App() {
     });
 
   };
+  const handleRemove = (event) => {
+    const itemId = event.target.dataset.id
+    console.log('In handleRemove');
+    axios.delete(`/list/${itemId}`)
+    .then(response => {
+      console.log('Item removed', response);
+      getShoppingList();
+    })
+    .catch(err => {
+      console.log('Unable to remove item',err);
+    })
+  }
+
+  // axios.put(`/list/${itemId}, itemPurchased)
+  const buyItem = (event) => {
+    const itemId = event.target.dataset.id;
+    const itemPurchased = event.target.dataset.purchased;
+    console.log('item purchased', itemPurchased);
+    console.log('testing', event.target.dataset.purchased)
+    console.log('In buyItem');
+    axios({ 
+      url: `/list/${itemId}`,
+      method: 'PUT',
+      data: {itemPurchased}
+    }) 
+    .then(response => {
+      console.log('Item purchased', response);
+      getShoppingList();
+    })
+    .catch(err => {
+      console.log('Unable to purchase item', err)
+    })
+  }
+
 
   return (
     <div className="App">
@@ -105,12 +143,16 @@ function App() {
       />
       <main>
         <ul>
+
           <ShoppingList
             shoppingList={shoppingList}
             clearList={clearList}
             resetList={resetList}
+            handleRemove={handleRemove}
+            buyItem={buyItem}/>
           />
         </ul>
+
       </main>
     </div>
   );
