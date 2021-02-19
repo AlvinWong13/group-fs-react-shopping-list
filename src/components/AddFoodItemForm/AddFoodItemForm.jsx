@@ -1,3 +1,5 @@
+import './AddFoodItemForm.css';
+
 function AddFoodItemForm({
   handleSubmit, 
   setNewFoodItemName, 
@@ -11,18 +13,19 @@ function AddFoodItemForm({
 <>
     <h2>Add an Item</h2>
 
-    <form onSubmit={handleSubmit}>
+    <form className="inputForm" onSubmit={handleSubmit}>
 
-    <label>Item:
+    <label>Item:</label>
       <input
+        className="item-input"
         type="text"
         onChange={(event) => setNewFoodItemName(event.target.value)}
         value={newFoodItemName}
       />
-      </label>
-
+      <div>
       <label>Quantity:
         <input
+          className="quantity-input"
           type="text"
           onChange={(event) => setNewFoodItemQuantity(event.target.value)}
           value={newFoodItemQuantity}
@@ -31,15 +34,16 @@ function AddFoodItemForm({
 
       <label>Unit:
         <input
+        className="unit-input"
         type="text"
         onChange={(event) => setNewFoodItemUnit(event.target.value)}
         value={newFoodItemUnit}
         />
       </label>
-      
-      <button type="submit">Save</button>
 
+          <button className="submitBtn" type="submit">Save</button>
 
+      </div>
     </form>
 </>   
   )

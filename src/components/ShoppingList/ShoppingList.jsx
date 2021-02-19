@@ -1,3 +1,4 @@
+import './ShoppingList.css';
 import ShoppingItem from '../ShoppingItem/ShoppingItem';
 
 function ShoppingList({
@@ -13,12 +14,12 @@ function ShoppingList({
 
   return (
     <>
-    <div class="shoppingList">
+    <div class="listHead">
       <h3>Shopping List</h3>
         <button onClick={resetList}>Reset</button>
         <button onClick={clearList}>Clear</button>
     </div>
-      <div>
+      <div class="listContainer">
         {shoppingList.map((item) => (
           <ShoppingItem
             key={item.id}
