@@ -1,0 +1,15 @@
+.listContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  text-align: center;
+}
+
+.listHead {
+  margin-bottom: 15px;
+}
+
+button {
+  margin: 5px;
+}

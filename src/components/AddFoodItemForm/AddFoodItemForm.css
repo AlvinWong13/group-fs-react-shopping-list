@@ -1,0 +1,24 @@
+.item-input {
+  height: 20px;
+  width: 400px;
+  margin: 5px;
+  border-radius: 3px;
+}
+
+.quantity-input {
+  height: 20px;
+  width: 200px;
+  margin: 5px;
+  border-radius: 3px;
+}
+
+.unit-input {
+  height: 20px;
+  width: 200px;
+  margin: 5px;
+  border-radius: 3px;
+}
+
+.submitBtn {
+  border-radius: 3px;
+}
