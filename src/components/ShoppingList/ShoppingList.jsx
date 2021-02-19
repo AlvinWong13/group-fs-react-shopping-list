@@ -8,6 +8,9 @@ function ShoppingList({
   clearList,
 }) {
   console.log('shoppingList', shoppingList);
+
+  
+
   return (
     <>
     <div class="shoppingList">
