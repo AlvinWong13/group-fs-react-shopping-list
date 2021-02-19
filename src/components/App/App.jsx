@@ -139,7 +139,6 @@ function App() {
         setNewFoodItemUnit={setNewFoodItemUnit}
       />
       <main>
-        <ul>
           <ShoppingList
             shoppingList={shoppingList}
             clearList={clearList}
@@ -147,7 +146,6 @@ function App() {
             handleRemove={handleRemove}
             buyItem={buyItem}
           />
-        </ul>
       </main>
     </div>
   );
