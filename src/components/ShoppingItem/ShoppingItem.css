@@ -1,0 +1,16 @@
+.itemBox {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+  padding: 10px;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+}
+
+button {
+  margin: .25rem
+}
