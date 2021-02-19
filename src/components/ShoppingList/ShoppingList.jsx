@@ -14,12 +14,12 @@ function ShoppingList({
 
   return (
     <>
-    <div class="listHead">
+    <div className="listHead">
       <h3>Shopping List</h3>
         <button onClick={resetList}>Reset</button>
         <button onClick={clearList}>Clear</button>
     </div>
-      <div class="listContainer">
+      <div className="listContainer">
         {shoppingList.map((item) => (
           <ShoppingItem
             key={item.id}
