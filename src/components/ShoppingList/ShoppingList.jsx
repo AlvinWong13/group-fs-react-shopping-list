@@ -10,11 +10,12 @@ function ShoppingList({
   console.log('shoppingList', shoppingList);
   return (
     <>
+    <div class="shoppingList">
       <h3>Shopping List</h3>
-      <div>
         <button onClick={resetList}>Reset</button>
         <button onClick={clearList}>Clear</button>
-
+    </div>
+      <div>
         {shoppingList.map((item) => (
           <ShoppingItem
             key={item.id}
