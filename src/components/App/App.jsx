@@ -18,7 +18,6 @@ function App() {
     getShoppingList();
   }, []);
 
-
   // function to grab shoppingList
   const getShoppingList = () => {
     axios
@@ -35,7 +34,6 @@ function App() {
         console.log('error getting shopping list', err);
       });
   }; // end getShoppingList
-
 
   // Function to handle submit click
   const handleSubmit = (event) => {
@@ -67,7 +65,6 @@ function App() {
       });
   };
 
-
   // Function to clear the shopping list
   const clearList = () => {
     console.log('clear button clicked');
@@ -85,49 +82,49 @@ function App() {
   const resetList = (event) => {
     console.log('reset all items');
 
-    axios.put('/list')
-    .then((response) => {
-      getShoppingList();
-    })
-    .catch((error) => {
-      console.log('error clearing list IN PUT APP', error);
-    });
-
+    axios
+      .put('/list')
+      .then((response) => {
+        getShoppingList();
+      })
+      .catch((error) => {
+        console.log('error clearing list IN PUT APP', error);
+      });
   };
   const handleRemove = (event) => {
-    const itemId = event.target.dataset.id
+    const itemId = event.target.dataset.id;
     console.log('In handleRemove');
-    axios.delete(`/list/${itemId}`)
-    .then(response => {
-      console.log('Item removed', response);
-      getShoppingList();
-    })
-    .catch(err => {
-      console.log('Unable to remove item',err);
-    })
-  }
+    axios
+      .delete(`/list/${itemId}`)
+      .then((response) => {
+        console.log('Item removed', response);
+        getShoppingList();
+      })
+      .catch((err) => {
+        console.log('Unable to remove item', err);
+      });
+  };
 
   // axios.put(`/list/${itemId}, itemPurchased)
   const buyItem = (event) => {
     const itemId = event.target.dataset.id;
     const itemPurchased = event.target.dataset.purchased;
     console.log('item purchased', itemPurchased);
-    console.log('testing', event.target.dataset.purchased)
+    console.log('testing', event.target.dataset.purchased);
     console.log('In buyItem');
-    axios({ 
+    axios({
       url: `/list/${itemId}`,
       method: 'PUT',
-      data: {itemPurchased}
-    }) 
-    .then(response => {
-      console.log('Item purchased', response);
-      getShoppingList();
+      data: { itemPurchased },
     })
-    .catch(err => {
-      console.log('Unable to purchase item', err)
-    })
-  }
-
+      .then((response) => {
+        console.log('Item purchased', response);
+        getShoppingList();
+      })
+      .catch((err) => {
+        console.log('Unable to purchase item', err);
+      });
+  };
 
   return (
     <div className="App">
@@ -143,16 +140,14 @@ function App() {
       />
       <main>
         <ul>
-
           <ShoppingList
             shoppingList={shoppingList}
             clearList={clearList}
             resetList={resetList}
             handleRemove={handleRemove}
-            buyItem={buyItem}/>
+            buyItem={buyItem}
           />
         </ul>
-
       </main>
     </div>
   );

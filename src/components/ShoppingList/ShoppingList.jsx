@@ -1,25 +1,30 @@
+import ShoppingItem from '../ShoppingItem/ShoppingItem';
 
-import ShoppingItem from '../ShoppingItem/ShoppingItem'
-
-function ShoppingList({shoppingList, handleRemove, buyItem}) {
+function ShoppingList({
+  shoppingList,
+  handleRemove,
+  buyItem,
+  resetList,
+  clearList,
+}) {
   console.log('shoppingList', shoppingList);
   return (
-  <>  
-   <h3>Shopping List</h3>
+    <>
+      <h3>Shopping List</h3>
       <div>
         <button onClick={resetList}>Reset</button>
         <button onClick={clearList}>Clear</button>
-      
-        {shoppingList.map(item => (
+
+        {shoppingList.map((item) => (
           <ShoppingItem
-          key={item.id}
-          item={item}
-          handleRemove={handleRemove}
-          buyItem={buyItem}
+            key={item.id}
+            item={item}
+            handleRemove={handleRemove}
+            buyItem={buyItem}
           />
-  ))}    
-    </div>
-  </>  
+        ))}
+      </div>
+    </>
   );
 }
 
