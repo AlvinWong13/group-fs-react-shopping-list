@@ -6,11 +6,12 @@ function ShoppingList({
   buyItem,
   resetList,
   clearList,
+  editItem
 }) {
   console.log('shoppingList', shoppingList);
   return (
     <>
-    <div class="shoppingList">
+    <div className="shoppingList">
       <h3>Shopping List</h3>
         <button onClick={resetList}>Reset</button>
         <button onClick={clearList}>Clear</button>
@@ -22,6 +23,7 @@ function ShoppingList({
             item={item}
             handleRemove={handleRemove}
             buyItem={buyItem}
+            editItem={editItem}
           />
         ))}
       </div>

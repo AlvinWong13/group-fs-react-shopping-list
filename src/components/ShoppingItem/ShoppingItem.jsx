@@ -1,6 +1,6 @@
 import './ShoppingItem.css';
 
-function ShoppingItem({item, handleRemove, buyItem}) { // need to pass in PUT function
+function ShoppingItem({item, handleRemove, buyItem, editItem}) { // need to pass in PUT function
   console.log('item is', item);
 
 if (item.purchased) {
@@ -19,6 +19,7 @@ if (item.purchased) {
         <span>
           <button data-id={item.id} data-purchased={item.purchased} onClick={buyItem}>Buy</button>
           <button data-id={item.id} onClick={handleRemove}>Remove</button>
+          <button data-id={item.id} onClick={editItem}>Edit</button>
         </span>
       </div>
   )}

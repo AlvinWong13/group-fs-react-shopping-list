@@ -120,5 +120,21 @@ router.put('/:id', (req, res) => {
   })
 })
 
+// PUT route for editing an item
+router.put('/edit/:id', (req, res) => {
+  console.log('in /edit PUT', req.params);
+  let queryString = `UPDATE "shopping_list" SET "name"='${req.body.name}', "quantity"=${req.body.quantity}, "unit"='${req.body.unit}' WHERE "id"=$1`;
+  pool.query(queryString, [req.params.id]).then((results) => {
+    console.log('successfully edited item');
+    res.sendStatus(200)
+  }).catch((error) => {
+    console.log('error editing item', error);
+    res.sendStatus(400);
+  })
+
+
+
+})
+
 
 module.exports = router;

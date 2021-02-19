@@ -126,6 +126,22 @@ function App() {
       });
   };
 
+  // Function that edits an existing list item
+  const editItem = (event) => {
+    const itemId = event.target.dataset.id;
+    console.log('item to edit:', itemId);
+    axios({
+      method: 'PUT',
+      url:`/list/edit/${itemId}`,
+      data: {}
+    }).then(response => {
+      console.log('item edited', response);
+      getShoppingList();
+    }).catch(error => {
+      console.log('unable to edit item', error);
+    });
+  }
+
   return (
     <div className="App">
       <Header />
@@ -145,6 +161,7 @@ function App() {
             resetList={resetList}
             handleRemove={handleRemove}
             buyItem={buyItem}
+            editItem={editItem}
           />
       </main>
     </div>
